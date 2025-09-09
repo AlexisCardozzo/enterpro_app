@@ -18,6 +18,12 @@ Enterpro busca fomentar el interés en las materias STEM (Ciencia, Tecnología, 
 
 - **Flutter**: Framework de UI de Google para construir aplicaciones compiladas nativamente para móvil, web y escritorio desde una única base de código.
 - **Dart**: Lenguaje de programación optimizado para UI, utilizado por Flutter.
+- **C++**: Utilizado para componentes nativos de alto rendimiento en Android y plugins.
+- **Swift**: Lenguaje principal para el desarrollo nativo en iOS/macOS.
+- **CMake**: Sistema de construcción para configurar proyectos multiplataforma.
+- **HTML/CSS/JavaScript**: Tecnologías web utilizadas cuando se compila para la web.
+- **Gradle/Kotlin Script**: Para la configuración de builds en Android.
+- **Xcode Build System**: Para la configuración de builds en iOS/macOS.
 
 ## Cómo Empezar
 
