@@ -29,21 +29,60 @@ Enterpro busca fomentar el interés en las materias STEM (Ciencia, Tecnología, 
 
 Para ejecutar el proyecto localmente, sigue estos pasos:
 
-1.  **Clonar el repositorio**:
+1.  **Requisitos Previos**:
+    - Flutter SDK (versión 3.13.0 o superior)
+    - Dart SDK (versión 3.1.0 o superior)
+    - Android Studio/Xcode (para desarrollo móvil)
+    - Visual Studio Code (recomendado) con extensiones Flutter/Dart
+
+2.  **Clonar el repositorio**:
     ```bash
     git clone https://github.com/AlexisCardozzo/enterpro_app.git
     cd enterpro_app
     ```
 
-2.  **Obtener dependencias**:
+3.  **Obtener dependencias**:
     ```bash
     flutter pub get
     ```
 
-3.  **Ejecutar la aplicación**:
+4.  **Ejecutar la aplicación**:
     ```bash
     flutter run
     ```
+
+5.  **Ejecutar pruebas**:
+    ```bash
+    flutter test
+    ```
+
+## Arquitectura del Proyecto
+
+El proyecto sigue una arquitectura en capas con los siguientes componentes principales:
+
+- **Capa de Presentación**: Contiene widgets y pantallas (lib/screens/)
+- **Capa de Lógica**: Providers y controladores (lib/providers/)
+- **Capa de Servicios**: Conexión con APIs externas (lib/services/)
+- **Capa de Modelos**: Estructuras de datos (lib/models/)
+
+## Guía de Estilo
+
+- **Nomenclatura**:
+  - Widgets: PascalCase (Ej: `GameScreen`)
+  - Variables: camelCase (Ej: `playerScore`)
+  - Constantes: UPPER_CASE (Ej: `MAX_LEVEL`)
+- **Documentación**:
+  - Documentar todas las funciones públicas con comentarios DartDoc
+  - Usar `//` para comentarios de una línea
+  - Usar `///` para documentación de API
+
+## Endpoints API
+
+| Endpoint | Método | Descripción |
+|----------|--------|-------------|
+| /api/users | POST | Crear nuevo usuario |
+| /api/games | GET | Obtener lista de juegos |
+| /api/progress | PUT | Actualizar progreso del usuario |
 
 ## Contribución
 
