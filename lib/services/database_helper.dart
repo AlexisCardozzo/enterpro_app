@@ -8,16 +8,15 @@ import 'package:enterpro/models/math_question.dart';
 import 'package:enterpro/models/avatar.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper instance = DatabaseHelper._internal();
   static Database? _database;
+  Database? _testDatabase;
 
-  factory DatabaseHelper() {
-    return instance;
-  }
+  DatabaseHelper({Database? testDatabase}) : _testDatabase = testDatabase;
 
-  DatabaseHelper._internal();
+  static final DatabaseHelper instance = DatabaseHelper();
 
   Future<Database> get database async {
+    if (_testDatabase != null) return _testDatabase!;
     if (_database != null) return _database!;
     _database = await _initDatabase();
     return _database!;

@@ -6,11 +6,11 @@ class HabitProvider with ChangeNotifier {
   List<Habit> _habits = [];
 
 
-  final DatabaseHelper _dbHelper = DatabaseHelper();
+  final DatabaseHelper _dbHelper;
 
   List<Habit> get habits => _habits;
 
-  HabitProvider() {
+  HabitProvider({DatabaseHelper? dbHelper}) : _dbHelper = dbHelper ?? DatabaseHelper.instance {
     _loadHabits();
   }
 
