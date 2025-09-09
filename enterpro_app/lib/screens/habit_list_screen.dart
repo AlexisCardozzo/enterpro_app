@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:enterpro_app/providers/habit_provider.dart';
-import 'package:enterpro_app/models/habit.dart';
-import 'package:enterpro_app/screens/add_habit_screen.dart';
-import 'package:enterpro_app/screens/gamification_screen.dart';
-import 'package:enterpro_app/providers/gamification_provider.dart';
+import 'package:enterpro/providers/habit_provider.dart';
+import 'package:enterpro/models/habit.dart';
+import 'package:enterpro/screens/add_habit_screen.dart';
+import 'package:enterpro/screens/gamification_screen.dart';
+import 'package:enterpro/providers/gamification_provider.dart';
 
 class HabitListScreen extends StatelessWidget {
   const HabitListScreen({super.key});
@@ -27,6 +27,18 @@ class HabitListScreen extends StatelessWidget {
               );
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.face),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/avatar_customization');
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.calculate),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/math_game');
+            },
+          ),
         ],
       ),
       body: ListView.builder(
@@ -41,7 +53,8 @@ class HabitListScreen extends StatelessWidget {
               onChanged: (bool? value) {
                 habitProvider.toggleHabitCompletion(habit);
                 if (value == true) {
-                  Provider.of<GamificationProvider>(context, listen: false).addPoints(10); // Example: 10 points per habit
+                  Provider.of<GamificationProvider>(context, listen:
+                  false).addEnterCoins(10); // Example: 10 points per habit
                 }
               },
             ),

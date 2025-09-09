@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
-import '../models/habit.dart';
-import '../services/database_helper.dart';
+import 'package:enterpro/models/habit.dart';
+import 'package:enterpro/repositories/habit_repository.dart';
+import 'package:enterpro/services/database_helper.dart';
 
 class HabitProvider with ChangeNotifier {
   List<Habit> _habits = [];
 
 
-  final DatabaseHelper _dbHelper = DatabaseHelper();
+  final HabitRepository _habitRepository;
 
   List<Habit> get habits => _habits;
 
-  HabitProvider() {
+  HabitProvider({HabitRepository? habitRepository}) : _habitRepository = habitRepository ?? HabitRepository(DatabaseHelper.instance) {
     _loadHabits();
   }
 
   Future<void> _loadHabits() async {
-    _habits = await _dbHelper.getHabits();
+    _habits = await _habitRepository.getHabits();
     notifyListeners();
   }
 
 
 
   Future<void> addHabit(Habit habit) async {
-    await DatabaseHelper.instance.insertHabit(habit);
+    await _habitRepository.insertHabit(habit);
     _habits.add(habit);
     notifyListeners();
   }
 
   Future<void> updateHabit(Habit habit) async {
-    await _dbHelper.updateHabit(habit);
+    await _habitRepository.updateHabit(habit);
     int index = _habits.indexWhere((h) => h.id == habit.id);
     if (index != -1) {
       _habits[index] = habit;
@@ -37,7 +38,7 @@ class HabitProvider with ChangeNotifier {
   }
 
   Future<void> deleteHabit(Habit habit) async {
-    await DatabaseHelper.instance.deleteHabit(habit.id);
+    await _habitRepository.deleteHabit(habit.id);
     _habits.removeWhere((h) => h.id == habit.id);
     notifyListeners();
   }
@@ -47,7 +48,7 @@ class HabitProvider with ChangeNotifier {
       isCompletedToday: !habit.isCompletedToday,
       streak: habit.isCompletedToday ? habit.streak - 1 : habit.streak + 1,
     );
-    await _dbHelper.updateHabit(updatedHabit);
+    await _habitRepository.updateHabit(updatedHabit);
     int index = _habits.indexWhere((h) => h.id == habit.id);
     if (index != -1) {
       _habits[index] = updatedHabit;

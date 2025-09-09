@@ -1,0 +1,10 @@
+Fase,Tarea,SemanaInicio,SemanaFin,Prioridad,Color,Categoría,Notas
+UX/UI y gamificación básica,Añadir animaciones, feedback inmediato y personajes/mascotas,1,2,Alta,Rojo,UX/UI,MVP
+UX/UI y gamificación básica,Crear un dashboard de progreso visual más llamativo y dinámico,1,2,Media,Amarillo,UX/UI,MVP
+UX/UI y gamificación básica,Añadir un avatar guía (búho, robot o mascota),1,2,Media,Amarillo,UX/UI,MVP
+Contenido educativo progresivo,Estructurar el contenido educativo con progresión clara y niveles de dificultad definidos,3,4,Alta,Rojo,Contenido,MVP
+Contenido educativo progresivo,Integración práctica,3,4,Media,Amarillo,Contenido,MVP
+Gamificación avanzada,Implementar recompensas personalizadas, logros secretos o retos diarios/semanales,3,4,Alta,Rojo,Gamificación,MVP
+Gamificación avanzada,Implementar notificaciones y retos diarios,3,4,Media,Amarillo,Gamificación,MVP
+Pruebas y monetización,Integrar pruebas piloto con usuarios reales para ajustar dificultad y motivación,5,6,Media,Amarillo,General,Testeo con usuarios
+Pruebas y monetización,Definir una estrategia de monetización y escalabilidad para el futuro,5,6,Media,Amarillo,General,Iterar después

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:enterpro_app/providers/habit_provider.dart';
-import 'package:enterpro_app/models/habit.dart';
+import 'package:enterpro/providers/habit_provider.dart';
+import 'package:enterpro/models/habit.dart';
 
 class AddHabitScreen extends StatefulWidget {
   const AddHabitScreen({super.key});
@@ -19,7 +19,7 @@ class _AddHabitScreenState extends State<AddHabitScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final newHabit = Habit(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
         name: _name,
         description: _description,
         creationDate: DateTime.now(),
