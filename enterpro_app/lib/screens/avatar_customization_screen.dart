@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:enterpro/models/avatar.dart';
+
+
 import 'package:enterpro/services/database_helper.dart';
 
 class AvatarCustomizationScreen extends StatefulWidget {
