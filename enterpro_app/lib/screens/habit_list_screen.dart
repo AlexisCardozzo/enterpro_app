@@ -6,11 +6,21 @@ import 'package:enterpro/screens/add_habit_screen.dart';
 import 'package:enterpro/screens/gamification_screen.dart';
 import 'package:enterpro/providers/gamification_provider.dart';
 
-class HabitListScreen extends StatelessWidget {
+class HabitListScreen extends StatefulWidget {
   const HabitListScreen({super.key});
 
   @override
+  State<HabitListScreen> createState() => _HabitListScreenState();
+}
+
+class _HabitListScreenState extends State<HabitListScreen> {
+  final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
+  @override
   Widget build(BuildContext context) {
+    return ScaffoldMessenger( // Wrap with ScaffoldMessenger
+      key: _scaffoldMessengerKey,
+      child: Scaffold(
     final habitProvider = Provider.of<HabitProvider>(context);
 
     return Scaffold(
@@ -45,23 +55,31 @@ class HabitListScreen extends StatelessWidget {
         itemCount: habitProvider.habits.length,
         itemBuilder: (context, index) {
           final habit = habitProvider.habits[index];
-          return ListTile(
-            title: Text(habit.name),
-            subtitle: Text(habit.description),
-            trailing: Checkbox(
-              value: habit.isCompletedToday,
-              onChanged: (bool? value) {
-                habitProvider.toggleHabitCompletion(habit);
-                if (value == true) {
-                  Provider.of<GamificationProvider>(context, listen:
-                  false).addEnterCoins(10); // Example: 10 points per habit
-                }
+          return AnimatedOpacity(
+            opacity: habit.isCompletedToday ? 0.5 : 1.0,
+            duration: const Duration(milliseconds: 500),
+            child: ListTile(
+              title: Text(habit.name),
+              subtitle: Text(habit.description),
+              trailing: Checkbox(
+                value: habit.isCompletedToday,
+                onChanged: (bool? value) {
+                  habitProvider.toggleHabitCompletion(habit);
+                  if (value == true) {
+                    Provider.of<GamificationProvider>(context, listen: false).addEnterCoins(10); // Example: 10 points per habit
+                    _scaffoldMessengerKey.currentState?.showSnackBar(
+                      SnackBar(
+                        content: Text('¡Hábito "${habit.name}" completado! +10 EnterCoins'),
+                        duration: const Duration(seconds: 2),
+                      ),
+                    );
+                  }
+                },
+              ),
+              onTap: () {
+                // TODO: Implement habit detail/edit screen
               },
-            ),
-            onTap: () {
-              // TODO: Implement habit detail/edit screen
-            },
-            onLongPress: () {
+              onLongPress: () {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
